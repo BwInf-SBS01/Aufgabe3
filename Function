@@ -1,0 +1,49 @@
+package de.dreiecke_zaehlen.java;
+
+import java.awt.Point;
+
+public class Function {
+
+	private double m, b;
+	private double a, z;
+	private boolean senkrecht = false;
+
+	public Function(double m, double b, double a, double z, boolean senkrecht) {
+		// m*x + b
+		// Intervall: a bis z
+		this.m = m;
+		this.b = b;
+		this.a = a;
+		this.z = z;
+		this.senkrecht = senkrecht;
+	}
+	
+	public static Function createFunction(Point p1 , Point p2){
+		boolean senkrecht = false;
+	    double m = (p2.getY() -p1.getY())/(p2.getX()-p1.getX());
+	    if(m >= Double.MAX_VALUE) {
+	    	// hier gilt: m = unendliche Steigung; b = X-Wert der Senkrechten;
+	    	// und a und z geben die Y-Begrenzung an
+	    	senkrecht = true;
+	    	m = Double.MAX_VALUE; // dummy wert
+	    	double b = p1.getX();
+	    	return new Function(m, b, p1.getY(), p2.getY(), senkrecht);
+	    } // else oder nicht?
+	    double b = p1.getY() - m* p1.getX();
+	    //1= a1 + b
+	    System.out.println(m+"*x+"+b+"von:"+p1.getX()+"bis:"+p2.getX());
+	    return new Function(m, b, p1.getX(), p2.getX(), senkrecht);
+	  }
+
+	private Point intersectionCalculate(Function func) {
+		// berechnet den Schnittpunkt zweier Functions
+		if(!this.senkrecht) {
+			
+			
+		} else {
+			
+		}
+		return new Point();
+	}
+
+}
