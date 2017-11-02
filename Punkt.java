@@ -11,7 +11,7 @@ public class Punkt {
 
 	@Override
 	public String toString() {
-		return "Punkt[x=" + x + ",y=" + y + "]";
+		return "Punkt@[x=" + x + ",y=" + y + "]";
 	}
 
 	public java.awt.Point toAWTPoint() {
