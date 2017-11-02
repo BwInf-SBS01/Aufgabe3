@@ -53,7 +53,7 @@ public class Function {
 			double m = (p2.getY() - p1.getY()) / (p2.getX() - p1.getX()); // else oder nicht?
 			double b = p1.getY() - m * p1.getX();
 			// 1= a1 + b
-			System.out.println("STRECKE "+ m + "*x+" + b + "  von:" + p1.getX() + "bis:" + p2.getX());
+			System.out.println("STRECKE " + m + "*x+" + b + "  von:" + p1.getX() + "bis:" + p2.getX());
 			return new Function(m, b, p1.getX(), p2.getX());
 		}
 
@@ -78,25 +78,25 @@ public class Function {
 		if (this.isSenkrecht() && !func.isSenkrecht()) {
 			// wenn nur diese Func senkrecht
 			System.out.println("achtung senkrecht!");
-			if (func.getA() < this.getB() && func.getZ() > this.getB()) {
+			if (func.getA() <= this.getB() && func.getZ() >= this.getB()) {
 				float schnittpunktX = (float) this.getB();
 				float schnittpunktY = (float) func.getY((schnittpunktX));
-				if (func.getY(this.getB()) > this.getA() && func.getY(this.getB()) < this.getZ()) {
+				if (func.getY(this.getB()) >= this.getA() && func.getY(this.getB()) <= this.getZ()) {
 					return new Punkt(schnittpunktX, schnittpunktY);
 				}
 			}
 		} else if (!this.isSenkrecht() && func.isSenkrecht()) {
 			// wenn nur andere Func senkrecht
 			System.out.println("achtung senkrecht!");
-			if (this.getA() < func.getB() && this.getZ() > func.getB()) {
+			if (this.getA() <= func.getB() && this.getZ() >= func.getB()) {
 				float schnittpunktX = (float) func.getB();
 				float schnittpunktY = (float) this.getY((schnittpunktX));
-				if (this.getY(func.getB()) > func.getA() && this.getY(func.getB()) < func.getZ()) {
+				if (this.getY(func.getB()) >= func.getA() && this.getY(func.getB()) <= func.getZ()) {
 					return new Punkt(schnittpunktX, schnittpunktY);
 				}
 			}
 		}
-
+		System.out.println("keine Überschneidung!");
 		return null;
 	}
 
