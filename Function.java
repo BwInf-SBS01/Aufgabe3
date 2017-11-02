@@ -8,63 +8,74 @@ public class Function {
 	private double a, z;
 	private boolean senkrecht = false;
 
-	public Function(double m, double b, double a, double z, boolean senkrecht) {
+	private Function(double m, double b, double a, double z) {
 		// m*x + b
 		// Intervall: a bis z
 		this.m = m;
 		this.b = b;
 		this.a = a;
 		this.z = z;
-		this.senkrecht = senkrecht;
+		this.senkrecht = false;
 	}
+	private Function(double at, double a, double z) {
+		// at (X); y1 ; y2
+		this.m = 0;
+		this.b = at;
+		this.a = a;
+		this.z = z;
+		this.senkrecht = true;
+	}
+	
 
 	public static Function createFunction(Point p1, Point p2) {
-		boolean senkrecht = false;
-		double m = (p2.getY() - p1.getY()) / (p2.getX() - p1.getX());
-		if (m >= Double.MAX_VALUE) {
+
+		if (p1.getX() == p2.getX()) {
 			// hier gilt: m = unendliche Steigung; b = X-Wert der Senkrechten;
 			// und a und z geben die Y-Begrenzung an
-			senkrecht = true;
-			m = Double.MAX_VALUE; // dummy wert
-			double b = p1.getX();
-			return new Function(m, b, p1.getY(), p2.getY(), senkrecht);
-		} // else oder nicht?
-		double b = p1.getY() - m * p1.getX();
-		// 1= a1 + b
-		System.out.println(m + "*x+" + b + "von:" + p1.getX() + "bis:" + p2.getX());
-		return new Function(m, b, p1.getX(), p2.getX(), senkrecht);
-	}
 
-	public boolean hasIntersection(Function func) {
-		// this = func (gleichsetzen)
-		// m1x+b1 = m2x+b2 --> x = (b1-b2)/(m2-m1)
-		if (func.getM() - this.getM() != 0) {
-			float schnittpunkt = (float) ((this.getB() - func.getB()) / (func.getM() - this.getM()));
-			if (schnittpunkt >= this.getA() && schnittpunkt <= this.getZ() && schnittpunkt >= func.getA()
-					&& schnittpunkt <= func.getZ()) {
-				// liegt der schnittpunkt auf beiden Func
-				return true;
-			}
+			System.out.println("senkrecht from: " + p1.getY() + " bis: " + p2.getY() + " @x= " + p1.getX());
+			return new Function(p1.getX(), p1.getY(), p2.getY());
+		} else {
+			
+			double m = (p2.getY() - p1.getY()) / (p2.getX() - p1.getX()); // else oder nicht?
+			double b = p1.getY() - m * p1.getX();
+			// 1= a1 + b
+			System.out.println(m + "*x+" + b + "von:" + p1.getX() + "bis:" + p2.getX());
+			return new Function(m, b, p1.getX(), p2.getX());
 		}
-		return false;
 
 	}
+
+	
 
 	public Point calculateIntersection(Function func) {
 		// berechnet den Schnittpunkt zweier Functions
-		if(hasIntersection(func)) {
-			float schnittpunktX = (float) ((this.getB() - func.getB()) / (func.getM() - this.getM()));
-			float schnittpunktY = (float) this.getY(schnittpunktX);
-			if(schnittpunktY == func.getY(schnittpunktX)) {
-				return new Point((int)schnittpunktX, (int) schnittpunktY);
+
+		if ((!this.isSenkrecht()) && (!func.isSenkrecht())) {
+			// wenn zwei normale Funktionen
+			if (func.getM() - this.getM() != 0) {
+				float schnittpunktX = (float) ((this.getB() - func.getB()) / (func.getM() - this.getM()));
+				float schnittpunktY = (float) this.getY(schnittpunktX);
+				if (schnittpunktX >= this.getA() && schnittpunktX <= this.getZ() && schnittpunktX >= func.getA()
+						&& schnittpunktX <= func.getZ()) {
+					// liegt der schnittpunkt auf beiden Func
+					return new Point((int) schnittpunktX, (int) schnittpunktY);
+				}
 			}
-			System.err.println("liegen doch nicht aufeinander ?");
 		}
+		System.err.println("achtung senkrecht!");
+		if (this.isSenkrecht() && !func.isSenkrecht()) {
+			// wenn diese Func senkrecht
+			
+		}
+
 		return null;
 	}
 
 	public float getY(float x) {
+
 		return (float) (this.m * x + this.b);
+
 	}
 
 	// settters und getters
