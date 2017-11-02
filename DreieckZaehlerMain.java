@@ -1,6 +1,5 @@
 package de.dreiecke_zaehlen.java;
 
-import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -10,39 +9,39 @@ import java.util.List;
 
 public class DreieckZaehlerMain {
 
-	private static List<Point> punkte = new ArrayList<Point>();
+	private static List<Punkt> punkte = new ArrayList<Punkt>();
 	private static List<Function> funktionen = new ArrayList<Function>();
 
 	private static int anzahl;
 
 	public static void main(String[] args) {
-		// new DarstellungFrame("dreiecke1.txt");
-		// loadPoints("dreiecke1.txt");
-		loadPointsTEST();
+		// new DarstellungFrame("test.txt");
+		loadPoints("test.txt");
+		// loadPointsTEST();
 		makeFunc();
-		
+
 		System.out.println("calculateIntersection=" + funktionen.get(0).calculateIntersection(funktionen.get(1)));
 
 	}
 
 	private static void makeFunc() {
-		for (int i = 0; i < punkte.size(); i += 2) {
-			funktionen.add(Function.createFunction(punkte.get(i), punkte.get(i + 1)));
+		for (int i = 0; i < punkte.size() / 2; i++) {
+			funktionen.add(Function.createFunction(punkte.get(2 * i), punkte.get(2 * i + 1)));
 		}
 	}
 
 	private static void loadPointsTEST() {
-		punkte.add(new Point(2, 3));
-		punkte.add(new Point(2, 0));
-		punkte.add(new Point(1, 2));
-		punkte.add(new Point(3, 2));
+		punkte.add(new Punkt(2, 3));
+		punkte.add(new Punkt(2, 0));
+		punkte.add(new Punkt(1, 2));
+		punkte.add(new Punkt(3, 2));
 
 	}
 
 	private static int loadPoints(String file) {
 		FileReader fr = null;
 		try {
-			fr = new FileReader(new File("rsc/" + file));
+			fr = new FileReader(new File("src/" + file));
 			@SuppressWarnings("resource")
 			BufferedReader reader = new BufferedReader(fr);
 
@@ -51,8 +50,8 @@ public class DreieckZaehlerMain {
 			while ((line = reader.readLine()) != null) {
 				String[] zahlen;
 				zahlen = line.split(" ");
-				punkte.add(new Point((int) Float.parseFloat(zahlen[0]), (int) Float.parseFloat(zahlen[1])));
-				punkte.add(new Point((int) Float.parseFloat(zahlen[2]), (int) Float.parseFloat(zahlen[3])));
+				punkte.add(new Punkt(Float.parseFloat(zahlen[0]), Float.parseFloat(zahlen[1])));
+				punkte.add(new Punkt(Float.parseFloat(zahlen[2]), Float.parseFloat(zahlen[3])));
 			}
 			return anzahl;
 		} catch (IOException e) {

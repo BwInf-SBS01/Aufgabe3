@@ -58,7 +58,7 @@ public class DarstellungFrame extends Frame {
   private int loadPoints(String file) {
     FileReader fr = null;
     try {
-      fr = new FileReader(new File("rsc/" + file));
+      fr = new FileReader(new File("src/" + file));
       @SuppressWarnings("resource")
       BufferedReader reader = new BufferedReader(fr);
       

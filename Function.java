@@ -27,7 +27,7 @@ public class Function {
 	}
 	
 
-	public static Function createFunction(Point p1, Point p2) {
+	public static Function createFunction(Punkt p1, Punkt p2) {
 
 		if (p1.getX() == p2.getX()) {
 			// hier gilt: m = unendliche Steigung; b = X-Wert der Senkrechten;
@@ -48,7 +48,7 @@ public class Function {
 
 	
 
-	public Point calculateIntersection(Function func) {
+	public Punkt calculateIntersection(Function func) {
 		// berechnet den Schnittpunkt zweier Functions
 
 		if ((!this.isSenkrecht()) && (!func.isSenkrecht())) {
@@ -59,7 +59,7 @@ public class Function {
 				if (schnittpunktX >= this.getA() && schnittpunktX <= this.getZ() && schnittpunktX >= func.getA()
 						&& schnittpunktX <= func.getZ()) {
 					// liegt der schnittpunkt auf beiden Func
-					return new Point((int) schnittpunktX, (int) schnittpunktY);
+					return new Punkt(schnittpunktX, schnittpunktY);
 				}
 			}
 		}
