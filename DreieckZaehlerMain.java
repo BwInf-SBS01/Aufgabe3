@@ -16,8 +16,8 @@ public class DreieckZaehlerMain {
 
 	public static void main(String[] args) {
 		// new DarstellungFrame("test.txt");
-		loadPoints("test.txt");
-		// loadPointsTEST();
+		// loadPoints("test.txt");
+		loadPointsTEST();
 		makeFunc();
 
 		System.out.println("calculateIntersection=" + funktionen.get(0).calculateIntersection(funktionen.get(1)));
@@ -31,10 +31,10 @@ public class DreieckZaehlerMain {
 	}
 
 	private static void loadPointsTEST() {
-		punkte.add(new Punkt(2, 3));
-		punkte.add(new Punkt(2, 0));
-		punkte.add(new Punkt(1, 2));
-		punkte.add(new Punkt(3, 2));
+		punkte.add(new Punkt(2, 2));
+		punkte.add(new Punkt(8, 6));
+		punkte.add(new Punkt(6, 10));
+		punkte.add(new Punkt(6, 2));
 
 	}
 
