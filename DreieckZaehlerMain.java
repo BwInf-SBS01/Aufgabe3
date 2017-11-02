@@ -12,48 +12,30 @@ public class DreieckZaehlerMain {
 
 	private static List<Point> punkte = new ArrayList<Point>();
 	private static List<Function> funktionen = new ArrayList<Function>();
-	
+
 	private static int anzahl;
 
 	public static void main(String[] args) {
-		new DarstellungFrame("dreiecke1.txt");
-		loadPoints("dreiecke1.txt");
-		// testeDreiecke();
-		maker();
-		analyser();
-	}
-
-	public static void testeDreiecke() {
-		punkte.add(new Point(1, 1));
-		punkte.add(new Point(2, 2));
-		punkte.add(new Point(1, 2));
-		punkte.add(new Point(2, 1));
-
-	}
-
-	private static void maker() {
-//		for (int i = 0; i < punkte.size() / 2; i++) {
-//			strecken.add(Strecke.machStrecke(punkte.get(2 * i), punkte.get(2 * i + 1)));
-//		}
-		for (int i = 0; i < punkte.size(); i++) {
-			nullVecs.add(new Vector2D(punkte.get(i).getX(), punkte.get(i).getY()));
-		}
-
-	}
-
-	private static void analyser() {
-//		for (int i = 0; i < strecken.size(); i++) {
-//			for (int j = 0; j < strecken.size(); j++) {
-//				// berechneSP(strecken.get(i), strecken.get(j));
-//			}
-//		}
+		// new DarstellungFrame("dreiecke1.txt");
+		// loadPoints("dreiecke1.txt");
+		loadPointsTEST();
+		makeFunc();
 		
-		for (int i = 0; i < (nullVecs.size()/2)-2; i++) {
-			for (int j = i+1; j < nullVecs.size()/2; j++) {
-				// berechneSP(nullVecs.get(2*i), nullVecs.get(2*i+1), nullVecs.get(2*j), nullVecs.get(2*j+1));
-				System.out.println(Double.toString(nullVecs.get(2*i).getX()) + " " + Double.toString(nullVecs.get(2*i+1).getX()) + " "  + Double.toString(nullVecs.get(2*j).getX()) + " "  + Double.toString(nullVecs.get(2*j+1).getX()));
-			}
+		System.out.println("calculateIntersection=" + funktionen.get(0).calculateIntersection(funktionen.get(1)));
+
+	}
+
+	private static void makeFunc() {
+		for (int i = 0; i < punkte.size(); i += 2) {
+			funktionen.add(Function.createFunction(punkte.get(i), punkte.get(i + 1)));
 		}
+	}
+
+	private static void loadPointsTEST() {
+		punkte.add(new Point(2, 3));
+		punkte.add(new Point(2, 0));
+		punkte.add(new Point(1, 2));
+		punkte.add(new Point(3, 2));
 
 	}
 
