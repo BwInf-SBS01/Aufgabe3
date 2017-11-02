@@ -1,26 +1,21 @@
 package de.dreiecke_zaehlen.java;
 
-import java.awt.Point;
-
 public class Function {
 
 	/**
-	 * Steigung bei senkrecht = false 
+	 * Steigung bei senkrecht = false
 	 */
 	private double m;
 	/**
-	 * y-Achsenabschnitt  bei senkrecht = false 
-	 * x-Stelle bei senkrecht = true 
+	 * y-Achsenabschnitt bei senkrecht = false x-Stelle bei senkrecht = true
 	 */
 	private double b;
 	/**
-	 * X Wert "von" bei senkrecht = false 
-	 * Y Wert "von" bei senkrecht = true 
+	 * X Wert "von" bei senkrecht = false Y Wert "von" bei senkrecht = true
 	 */
 	private double a;
 	/**
-	 * X Wert "bis" bei senkrecht = false 
-	 * Y Wert "bis" bei senkrecht = true 
+	 * X Wert "bis" bei senkrecht = false Y Wert "bis" bei senkrecht = true
 	 */
 	private double z;
 	private boolean senkrecht = false;
@@ -38,10 +33,10 @@ public class Function {
 	private Function(double at, double y1, double y2) {
 		// at (X); y1 ; y2
 		// Senkrecht [x]= at von y1 bis y2
-		this.m = 0;		 			// ! wird nicht gebraucht
-		this.b = at; 				// ! dient als X Stellen Speicher
-		this.a = Math.min(y1, y2); 	// ! dient als y Stellen Speicher
-		this.z = Math.max(y1, y2);  // ! dient als y Stellen Speicher
+		this.m = 0; // ! wird nicht gebraucht
+		this.b = at; // ! dient als X Stellen Speicher
+		this.a = Math.min(y1, y2); // ! dient als y Stellen Speicher
+		this.z = Math.max(y1, y2); // ! dient als y Stellen Speicher
 		this.senkrecht = true;
 	}
 
@@ -51,14 +46,14 @@ public class Function {
 			// hier gilt: m = unendliche Steigung; b = X-Wert der Senkrechten;
 			// und a und z geben die Y-Begrenzung an
 
-			System.out.println("senkrecht from: " + p1.getY() + " bis: " + p2.getY() + " @x= " + p1.getX());
+			System.out.println("SENKRECHTE" + " @x= " + p1.getX() + "  von:" + p1.getY() + " bis:" + p2.getY());
 			return new Function(p1.getX(), p1.getY(), p2.getY());
 		} else {
 
 			double m = (p2.getY() - p1.getY()) / (p2.getX() - p1.getX()); // else oder nicht?
 			double b = p1.getY() - m * p1.getX();
 			// 1= a1 + b
-			System.out.println(m + "*x+" + b + "von:" + p1.getX() + "bis:" + p2.getX());
+			System.out.println("STRECKE "+ m + "*x+" + b + "  von:" + p1.getX() + "bis:" + p2.getX());
 			return new Function(m, b, p1.getX(), p2.getX());
 		}
 
@@ -79,7 +74,7 @@ public class Function {
 				}
 			}
 		}
-		
+
 		if (this.isSenkrecht() && !func.isSenkrecht()) {
 			// wenn nur diese Func senkrecht
 			System.out.println("achtung senkrecht!");
@@ -90,7 +85,7 @@ public class Function {
 					return new Punkt(schnittpunktX, schnittpunktY);
 				}
 			}
-		}else if (!this.isSenkrecht() && func.isSenkrecht()) {
+		} else if (!this.isSenkrecht() && func.isSenkrecht()) {
 			// wenn nur andere Func senkrecht
 			System.out.println("achtung senkrecht!");
 			if (this.getA() < func.getB() && this.getZ() > func.getB()) {
