@@ -12,6 +12,7 @@ public class DreieckZaehlerMain {
 	private static List<Punkt> punkte = new ArrayList<Punkt>();
 	private static List<Funktion> funktionen = new ArrayList<Funktion>();
 	private static List<List<Funktion>> schnittFunktionen = new ArrayList<List<Funktion>>();
+	private static List<Punkt[]> dreicke = new ArrayList<Punkt[]>();
 
 
 	public static void main(String[] args) {
@@ -36,13 +37,12 @@ public class DreieckZaehlerMain {
 				for (int k = 0; k < list2.size(); k++) {
 					if(list.contains(list2.get(k))) {
 						System.out.println("dreick");
-						list2.remove(func);
-						list.remove(funktionen.get(j));
+						
 					}
 				}
-				schnittFunktionen.add(j, list2);
+				
 			}
-			schnittFunktionen.add(i,list);
+			
 		}
 	}
 
