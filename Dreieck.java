@@ -1,5 +1,3 @@
-package de.dreiecke_zaehlen.java;
-
 public class Dreieck {
 	
 	private Punkt p1, p2, p3;

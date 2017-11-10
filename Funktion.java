@@ -1,5 +1,3 @@
-package de.dreiecke_zaehlen.java;
-
 public class Funktion {
 
 	/**

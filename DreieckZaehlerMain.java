@@ -1,5 +1,3 @@
-package de.dreiecke_zaehlen.java;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -15,9 +13,9 @@ public class DreieckZaehlerMain {
 	private static List<Dreieck> dreiecke = new ArrayList<Dreieck>();
 
 	public static void main(String[] args) {
-		new DarstellungFrame("test.txt");
+		
 		loadPoints("test.txt");
-
+		new DarstellungFrame("test.txt",punkte,dreiecke);
 		makeFunc();
 		calcIntersec();
 		calcTriang();
@@ -96,7 +94,7 @@ public class DreieckZaehlerMain {
 	private static int loadPoints(String file) {
 		FileReader fr = null;
 		try {
-			fr = new FileReader(new File("src/" + file));
+			fr = new FileReader(new File(file));
 			@SuppressWarnings("resource")
 			BufferedReader reader = new BufferedReader(fr);
 
