@@ -13,6 +13,10 @@ public class Punkt {
 	public String toString() {
 		return "Punkt@[x=" + x + ",y=" + y + "]";
 	}
+	
+	public boolean equalsPunkt(Punkt p) {		
+		return(this.getX() == p.getX() && this.getY() == p.getY()) ;
+	}
 
 	public java.awt.Point toAWTPoint() {
 		return new java.awt.Point((int) Math.round(x), (int) Math.round(y));

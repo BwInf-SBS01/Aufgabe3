@@ -12,38 +12,65 @@ public class DreieckZaehlerMain {
 	private static List<Punkt> punkte = new ArrayList<Punkt>();
 	private static List<Funktion> funktionen = new ArrayList<Funktion>();
 	private static List<List<Funktion>> schnittFunktionen = new ArrayList<List<Funktion>>();
-	private static List<Punkt[]> dreicke = new ArrayList<Punkt[]>();
-
+	private static List<Dreieck> dreiecke = new ArrayList<Dreieck>();
 
 	public static void main(String[] args) {
-		// new DarstellungFrame("test.txt");
+		new DarstellungFrame("test.txt");
 		loadPoints("test.txt");
 
 		makeFunc();
 		calcIntersec();
 		calcTriang();
+		System.out.println(dreiecke.size());
 		// System.out.println("calculateIntersection=" +
 		// funktionen.get(0).calculateIntersection(funktionen.get(1)));
 
 	}
 
-
 	private static void calcTriang() {
+
 		for (int i = 0; i < funktionen.size(); i++) {
-			Funktion func = funktionen.get(i);
-			List<Funktion>  list = schnittFunktionen.get(i); 
+			Funktion func1 = funktionen.get(i);
+			List<Funktion> list = getSchnittFunc(func1);
 			for (int j = 0; j < list.size(); j++) {
-				List<Funktion> list2 = schnittFunktionen.get(j);
+				Funktion func2 = list.get(j);
+				List<Funktion> list2 = getSchnittFunc(func2);
+				list2 = removeFuncFromList(func1, list2);
 				for (int k = 0; k < list2.size(); k++) {
-					if(list.contains(list2.get(k))) {
-						System.out.println("dreick");
-						
+					Funktion func3 = list2.get(k);
+					List<Funktion> list3 = getSchnittFunc(func3);
+					for (int l = 0; l < list3.size(); l++) {
+						if (list3.get(l).equals(func1)) {
+							Dreieck dreieck = new Dreieck(func1, func2, func3);
+							if (!dreieck.aufeinemPunkt) {
+								dreiecke.add(dreieck);
+								System.out.println(dreiecke.get(dreiecke.size() - 1));
+							}
+						}
 					}
 				}
-				
 			}
-			
+
 		}
+
+	}
+
+	private static List<Funktion> getSchnittFunc(Funktion f) {
+		for (int i = 0; i < funktionen.size(); i++) {
+			if (funktionen.get(i).equals(f)) {
+				return schnittFunktionen.get(i);
+			}
+		}
+		return null;
+	}
+
+	private static List<Funktion> removeFuncFromList(Funktion rev, List<Funktion> list) {
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i).equals(rev)) {
+				list.remove(i);
+			}
+		}
+		return list;
 	}
 
 	private static void calcIntersec() {
@@ -56,7 +83,7 @@ public class DreieckZaehlerMain {
 			}
 			schnittFunktionen.add(schnitte);
 		}
-		System.out.println(schnittFunktionen);
+		// System.out.println(schnittFunktionen);
 
 	}
 
