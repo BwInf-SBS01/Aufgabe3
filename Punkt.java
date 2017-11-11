@@ -27,4 +27,11 @@ public class Punkt {
 	public float getY() {
 		return y;
 	}
+	public int getXint() {
+		return (int) Math.round(x);
+	}
+
+	public int getYint() {
+		return(int) Math.round(y);
+	}
 }

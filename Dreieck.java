@@ -1,7 +1,7 @@
 public class Dreieck {
 	
 	private Punkt p1, p2, p3;
-	public boolean aufeinemPunkt;
+	private boolean aufeinemPunkt;
 	
 	public Dreieck(Funktion f1, Funktion f2, Funktion f3) {
 		p1 = f1.calculateIntersection(f2);
@@ -12,6 +12,22 @@ public class Dreieck {
 			aufeinemPunkt = true;
 		}
 		
+	}
+
+	public Punkt getP1() {
+		return p1;
+	}
+
+	public Punkt getP2() {
+		return p2;
+	}
+
+	public Punkt getP3() {
+		return p3;
+	}
+
+	public boolean isAufeinemPunkt() {
+		return aufeinemPunkt;
 	}
 
 	@Override

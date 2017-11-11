@@ -13,14 +13,13 @@ import java.util.List;
 
 public class DarstellungFrame extends Frame {
 	private static final long serialVersionUID = 186708090502948842L;
-	private static final int SCALE = 3;
-	
-	
-	private List<Punkt> punkte = new ArrayList<Punkt>();
-	private static List<Dreieck> dreiecke = new ArrayList<Dreieck>();
-	
+	private static final int SCALE = 5;
+	private static final int OFFSET = 30;
 
-	public DarstellungFrame(String file, List<Punkt> punkte, List<Dreieck> dreiecke) {
+	private List<Punkt> punkte = new ArrayList<Punkt>();
+	private List<Dreieck> dreiecke = new ArrayList<Dreieck>();
+
+	public DarstellungFrame(List<Punkt> punkte, List<Dreieck> dreiecke, int fileNR) {
 		super();
 		this.punkte = punkte;
 		this.dreiecke = dreiecke;
@@ -31,8 +30,8 @@ public class DarstellungFrame extends Frame {
 				System.exit(0);
 			}
 		});
-		setTitle("Visualisierung:" + file);
-		setBounds(100, 100, 700, 700);
+		setTitle("Visualisierung: " + fileNR);
+		setBounds(100, 100, 250*SCALE, 250*SCALE);
 		setVisible(true);
 		run(this);
 		setVisible(true);
@@ -40,7 +39,7 @@ public class DarstellungFrame extends Frame {
 
 	private void run(Frame frame) {
 		Graphics g = frame.getGraphics();
-		
+
 		paint(g);
 		this.setVisible(true);
 	}
@@ -48,50 +47,29 @@ public class DarstellungFrame extends Frame {
 	@Override
 	public void paint(Graphics g) {
 		g.setColor(Color.BLACK);
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i <= 6; i++) {
 
-			g.drawString(Integer.toString(i*50), i*50 * SCALE + 50, this.getHeight() + 50);
-			g.drawString(Integer.toString(i*50), 0*50 * SCALE + 50, this.getHeight() -i*50*SCALE- 50);
+			g.drawString(Integer.toString(i * 50), i * 50 * SCALE + OFFSET, this.getHeight() - OFFSET);
+			g.drawString(Integer.toString(i * 50), OFFSET, this.getHeight() - i * 50 * SCALE - OFFSET);
 		}
-		g.drawString("0", 0 * 4 + 50, this.getHeight() - 0 * 4 - 50);
-		g.drawString("50", 50 * 4 + 50, this.getHeight() - 0 * 4 - 50);
-		g.drawString("50", 0 * 4 + 50, this.getHeight() - 50 * 4 - 50);
-		g.drawString("100", 100 * 4 + 50, this.getHeight() - 0 * 4 - 50);
-		g.drawString("100", 0 * 4 + 50, this.getHeight() - 100 * 4 - 50);
-		g.drawString("150", 150 * 4 + 50, this.getHeight() - 0 * 4 - 50);
-		g.drawString("150", 0 * 4 + 50, this.getHeight() - 150 * 4 - 50);
-		g.drawString("200", 200 * 4 + 50, this.getHeight() - 0 * 4 - 50);
-		g.drawString("200", 0 * 4 + 50, this.getHeight() - 200 * 4 - 50);
-	
-		g.setColor(Color.red);
-		for (int i = 0; i < punkte.size()*2; i = i + 2) {
-			g.drawLine(punkte.get(i).toAWTPoint().x * SCALE + 50, this.getHeight() - punkte.get(i).toAWTPoint().y * SCALE - 50,
-					punkte.get(i + 1).toAWTPoint().x * SCALE + 50, this.getHeight() - punkte.get(i + 1).toAWTPoint().y * SCALE - 50);
+		g.setColor(Color.RED);
+		for (int i = 0; i < punkte.size(); i = i + 2) {
+			g.drawLine(punkte.get(i).toAWTPoint().x * SCALE + OFFSET,
+					this.getHeight() - punkte.get(i).toAWTPoint().y * SCALE - OFFSET,
+					punkte.get(i + 1).toAWTPoint().x * SCALE + OFFSET,
+					this.getHeight() - punkte.get(i + 1).toAWTPoint().y * SCALE - OFFSET);
 		}
-
+		g.setColor(Color.BLUE);
+		for (int i = 0; i < dreiecke.size(); i++) {
+			g.drawOval(dreiecke.get(i).getP1().getXint() * SCALE + OFFSET - SCALE,
+					this.getHeight() - dreiecke.get(i).getP1().getYint() * SCALE - OFFSET - SCALE, 2 * SCALE,
+					2 * SCALE);
+			g.drawOval(dreiecke.get(i).getP2().getXint() * SCALE + OFFSET - SCALE,
+					this.getHeight() - dreiecke.get(i).getP2().getYint() * SCALE - OFFSET - SCALE, 2 * SCALE,
+					2 * SCALE);
+			g.drawOval(dreiecke.get(i).getP3().getXint() * SCALE + OFFSET - SCALE,
+					this.getHeight() - dreiecke.get(i).getP3().getYint() * SCALE - OFFSET - SCALE, 2 * SCALE,
+					2 * SCALE);
+		}
 	}
-
-//	private int loadPoints(String file) {
-//		FileReader fr = null;
-//		try {
-//			fr = new FileReader(new File(file));
-//			@SuppressWarnings("resource")
-//			BufferedReader reader = new BufferedReader(fr);
-//
-//			String line;
-//			int anzahl = Integer.parseInt(reader.readLine());
-//			while ((line = reader.readLine()) != null) {
-//				String[] zahlen;
-//				zahlen = line.split(" ");
-//				punkte.add(new Point((int) Float.parseFloat(zahlen[0]), (int) Float.parseFloat(zahlen[1])));
-//				punkte.add(new Point((int) Float.parseFloat(zahlen[2]), (int) Float.parseFloat(zahlen[3])));
-//			}
-//			return anzahl;
-//		} catch (IOException e) {
-//			System.err.println("Couldn't load file!");
-//			return 0;
-//		}
-//	}
-	
-
 }
