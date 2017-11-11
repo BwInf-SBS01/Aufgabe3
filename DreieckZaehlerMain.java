@@ -1,24 +1,22 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class DreieckZaehlerMain {
-	
+
   private static List<Punkt> punkte = new ArrayList<Punkt>();
   private static List<Funktion> funktionen = new ArrayList<Funktion>();
   private static List<List<Funktion>> schnittFunktionen = new ArrayList<List<Funktion>>();
   private static List<Dreieck> dreiecke = new ArrayList<Dreieck>();
-  
+
   public static void main(String[] args) {
     zaehleUndStelleDar(1);
-    zaehleUndStelleDar(2);
-    zaehleUndStelleDar(3);
-    zaehleUndStelleDar(4);
-    zaehleUndStelleDar(5);
-    zaehleUndStelleDar(6);
+
   }
 
   public static void zaehleUndStelleDar(int fileNR) {
@@ -30,7 +28,8 @@ public class DreieckZaehlerMain {
     makeFunc();
     calcIntersec();
     calcTriang();
-    System.out.println(dreiecke.size());
+    System.out.println(dreiecke.size()+" Dreiecke in dreiecke" + fileNR + ".txt");
+    writeDreiecke(fileNR);
     new DarstellungFrame(punkte, dreiecke, fileNR);
   }
 
@@ -51,7 +50,7 @@ public class DreieckZaehlerMain {
               Dreieck dreieck = new Dreieck(func1, func2, func3);
               if (!dreieck.isAufeinemPunkt()) {
                 dreiecke.add(dreieck);
-                System.out.println(dreiecke.get(dreiecke.size() - 1));
+                // System.out.println(dreiecke.get(dreiecke.size() - 1));
               }
             }
           }
@@ -101,12 +100,9 @@ public class DreieckZaehlerMain {
   }
 
   private static int loadPoints(String file) {
-    FileReader fr = null;
+    BufferedReader reader = null;
     try {
-      fr = new FileReader(new File(file));
-      @SuppressWarnings("resource")
-      BufferedReader reader = new BufferedReader(fr);
-
+      reader = new BufferedReader(new FileReader(new File(file)));
       String line;
       int anzahl = Integer.parseInt(reader.readLine());
       while ((line = reader.readLine()) != null) {
@@ -115,10 +111,28 @@ public class DreieckZaehlerMain {
         punkte.add(new Punkt(Float.parseFloat(zahlen[0]), Float.parseFloat(zahlen[1])));
         punkte.add(new Punkt(Float.parseFloat(zahlen[2]), Float.parseFloat(zahlen[3])));
       }
+      reader.close();
       return anzahl;
     } catch (IOException e) {
       System.err.println("Couldn't load file!");
       return 0;
+    }
+  }
+
+  private static void writeDreiecke(int loadedFile) {
+    BufferedWriter writer = null;
+    try {
+      File out = new File("dreiecke" + loadedFile + "-ergebnis.txt");
+      out.delete();
+      writer = new BufferedWriter(new FileWriter(out));
+      writer.write(dreiecke.size() + " Dreiecke gefunden");
+      for (Dreieck dreieck : dreiecke) {
+        writer.newLine();
+        writer.write(dreieck.toString());
+      }
+      writer.close();
+    } catch (IOException e) {
+      System.err.println("Error writing File!");
     }
   }
 }

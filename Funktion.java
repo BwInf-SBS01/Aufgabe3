@@ -45,14 +45,14 @@ public class Funktion {
 			// hier gilt: m = unendliche Steigung; b = X-Wert der Senkrechten;
 			// und a und z geben die Y-Begrenzung an
 
-			System.out.println("SENKRECHTE" + " @x= " + p1.getX() + "  von:" + p1.getY() + " bis:" + p2.getY());
+			//System.out.println("SENKRECHTE" + " @x= " + p1.getX() + "  von:" + p1.getY() + " bis:" + p2.getY());
 			return new Funktion(p1.getX(), p1.getY(), p2.getY());
 		} else {
 
 			double m = (p2.getY() - p1.getY()) / (p2.getX() - p1.getX()); // else oder nicht?
 			double b = p1.getY() - m * p1.getX();
 			// 1= a1 + b
-			System.out.println("STRECKE " + m + "*x+" + b + "  von:" + p1.getX() + "bis:" + p2.getX());
+			//System.out.println("STRECKE " + m + "*x+" + b + "  von:" + p1.getX() + "bis:" + p2.getX());
 			return new Funktion(m, b, p1.getX(), p2.getX());
 		}
 
@@ -124,12 +124,5 @@ public class Funktion {
 
 	public boolean isSenkrecht() {
 		return senkrecht;
-	}
-
-	
-	
-	@Override
-	public String toString() {
-		return "F@"+this.hashCode() ;
 	}
 }
