@@ -1,37 +1,37 @@
 public class Punkt {
-	private float x;
-	private float y;
+  private float x;
+  private float y;
 
-	public Punkt(float x, float y) {
-		this.x = x;
-		this.y = y;
-	}
+  public Punkt(float x, float y) {
+    this.x = x;
+    this.y = y;
+  }
 
-	@Override
-	public String toString() {
-		return "Punkt@[x=" + x + ",y=" + y + "]";
-	}
-	
-	public boolean equalsPunkt(Punkt p) {		
-		return(this.getX() == p.getX() && this.getY() == p.getY()) ;
-	}
+  @Override
+  public String toString() {
+    return "Punkt@[x=" + x + ",y=" + y + "]";
+  }
+  
+  public boolean equalsPunkt(Punkt p) {   
+    return(this.getX() == p.getX() && this.getY() == p.getY()) ;
+  }
 
-	public java.awt.Point toAWTPoint() {
-		return new java.awt.Point((int) Math.round(x), (int) Math.round(y));
-	}
+  public java.awt.Point toAWTPoint() {
+    return new java.awt.Point((int) Math.round(x), (int) Math.round(y));
+  }
 
-	public float getX() {
-		return x;
-	}
+  public float getX() {
+    return x;
+  }
 
-	public float getY() {
-		return y;
-	}
-	public int getXint() {
-		return (int) Math.round(x);
-	}
+  public float getY() {
+    return y;
+  }
+  public int getXint() {
+    return (int) Math.round(x);
+  }
 
-	public int getYint() {
-		return(int) Math.round(y);
-	}
+  public int getYint() {
+    return(int) Math.round(y);
+  }
 }

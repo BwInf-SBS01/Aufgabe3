@@ -1,0 +1,10 @@
+9 Dreiecke gefunden
+Dreieck[Punkt@[x=0.0,y=0.0],Punkt@[x=0.0,y=200.0],Punkt@[x=120.0,y=0.0]]
+Dreieck[Punkt@[x=0.0,y=200.0],Punkt@[x=0.0,y=20.0],Punkt@[x=55.10204,y=108.16327]]
+Dreieck[Punkt@[x=120.0,y=0.0],Punkt@[x=20.0,y=0.0],Punkt@[x=41.739132,y=130.43478]]
+Dreieck[Punkt@[x=120.0,y=0.0],Punkt@[x=100.0,y=0.0],Punkt@[x=82.75862,y=62.06897]]
+Dreieck[Punkt@[x=20.0,y=0.0],Punkt@[x=100.0,y=0.0],Punkt@[x=50.0,y=180.0]]
+Dreieck[Punkt@[x=55.10204,y=108.16327],Punkt@[x=41.739132,y=130.43478],Punkt@[x=31.818182,y=70.90909]]
+Dreieck[Punkt@[x=55.10204,y=108.16327],Punkt@[x=82.75862,y=62.06897],Punkt@[x=65.38461,y=124.61538]]
+Dreieck[Punkt@[x=41.739132,y=130.43478],Punkt@[x=82.75862,y=62.06897],Punkt@[x=50.0,y=180.0]]
+Dreieck[Punkt@[x=31.818182,y=70.90909],Punkt@[x=65.38461,y=124.61538],Punkt@[x=50.0,y=180.0]]

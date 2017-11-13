@@ -15,8 +15,7 @@ public class DreieckZaehlerMain {
   private static List<Dreieck> dreiecke = new ArrayList<Dreieck>();
 
   public static void main(String[] args) {
-    zaehleUndStelleDar(1);
-
+    new DarstellungFrame();
   }
 
   public static void zaehleUndStelleDar(int fileNR) {
@@ -28,13 +27,11 @@ public class DreieckZaehlerMain {
     makeFunc();
     calcIntersec();
     calcTriang();
-    System.out.println(dreiecke.size()+" Dreiecke in dreiecke" + fileNR + ".txt");
+    System.out.println(dreiecke.size() + " Dreiecke in dreiecke" + fileNR + ".txt");
     writeDreiecke(fileNR);
-    new DarstellungFrame(punkte, dreiecke, fileNR);
   }
 
   private static void calcTriang() {
-
     for (int i = 0; i < funktionen.size(); i++) {
       Funktion func1 = funktionen.get(i);
       List<Funktion> list = getSchnittFunc(func1);
@@ -134,5 +131,13 @@ public class DreieckZaehlerMain {
     } catch (IOException e) {
       System.err.println("Error writing File!");
     }
+  }
+
+  public static List<Punkt> getPunkte() {
+    return punkte;
+  }
+
+  public static List<Dreieck> getDreiecke() {
+    return dreiecke;
   }
 }
