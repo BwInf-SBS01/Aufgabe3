@@ -23,25 +23,25 @@ public class DarstellungFrame extends JFrame {
     this.dreiecke = DreieckZaehlerMain.getDreiecke();
     this.fileNR = 0;
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-    setBounds(100, 100, 250 * SCALE, 250 * SCALE);
+    setBounds(100, 100, 200 * SCALE, 250 * SCALE);
     setVisible(true);
     Container cp = this.getContentPane();
     cp.setLayout(null);
-    button_next.setBounds(OFFSET, OFFSET, 18 * SCALE, 10 * SCALE);
+    button_next.setBounds(OFFSET + 26 * SCALE, OFFSET, 25 * SCALE, 10 * SCALE);
     button_next.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         next();
       }
     });
-    button_last.setBounds(OFFSET + 19 * SCALE, OFFSET, 18 * SCALE, 10 * SCALE);
+    button_last.setBounds(OFFSET, OFFSET, 25 * SCALE, 10 * SCALE);
     button_last.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         last();
       }
     });
-    label.setBounds(OFFSET + 19 * SCALE*2, OFFSET, 30 * SCALE, 10 * SCALE);
+    label.setBounds(OFFSET + 26 * SCALE*2, OFFSET, 200 * SCALE, 10 * SCALE);
     cp.add(button_next);
     cp.add(button_last);
     cp.add(label);
@@ -86,7 +86,7 @@ public class DarstellungFrame extends JFrame {
       this.punkte = DreieckZaehlerMain.getPunkte();
       this.dreiecke = DreieckZaehlerMain.getDreiecke();
       setTitle("Visualisierung: " + fileNR);
-      label.setText(dreiecke.size()+" Dreiecke gefunden"); 
+      label.setText(dreiecke.size()+" Dreiecke gefunden: als 'deiecke"+fileNR+"-ergebnis.txt' gespeichert"); 
       paintAll(getGraphics());    
     }
   }
@@ -97,7 +97,7 @@ public class DarstellungFrame extends JFrame {
       this.punkte = DreieckZaehlerMain.getPunkte();
       this.dreiecke = DreieckZaehlerMain.getDreiecke();
       setTitle("Visualisierung: " + fileNR);
-      label.setText(dreiecke.size()+" Dreiecke gefunden");
+      label.setText(dreiecke.size()+" Dreiecke gefunden: als 'deiecke"+fileNR+"-ergebnis.txt' gespeichert"); 
       paintAll(getGraphics());
     }
   }
