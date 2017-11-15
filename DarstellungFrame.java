@@ -8,8 +8,8 @@ import javax.swing.*;
 
 public class DarstellungFrame extends JFrame {
   private static final long serialVersionUID = 186708090502948842L;
-  private static final int SCALE = 5;
-  private static final int OFFSET = 30;
+  private static final int SCALE = 3;
+  private static final int OFFSET = 20;
   private JButton button_next = new JButton("next");
   private JButton button_last = new JButton("last");
   private JLabel label = new JLabel();
