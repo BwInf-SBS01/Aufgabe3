@@ -1,0 +1,90 @@
+[Files]
+File0=DarstellungFrame.java
+File1=Dreieck.java
+File2=DreieckZaehlerMain.java
+File3=Funktion.java
+File4=Punkt.java
+
+[Box:  - DarstellungFrame]
+X=804
+Y=257
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+FontSize=10
+FontName=MS Sans Serif
+
+[Box:  - Dreieck]
+X=899
+Y=681
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+FontSize=10
+FontName=MS Sans Serif
+
+[Box:  - DreieckZaehlerMain]
+X=65
+Y=243
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+FontSize=10
+FontName=MS Sans Serif
+
+[Box:  - Funktion]
+X=36
+Y=720
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+FontSize=10
+FontName=MS Sans Serif
+
+[Box:  - Punkt]
+X=391
+Y=589
+MinVis=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+FontSize=10
+FontName=MS Sans Serif
+
+[Diagram]
+comments=0
+OffsetX=0
+OffsetY=0
+Visibility=0
+ShowParameter=4
+SortOrder=0
+ShowIcons=0
+ShowConnections=1
+Fontname=MS Sans Serif
+Fontsize=10
+ShowObjectDiagram=0
+
+[Connections]
+V0=Dreieck#Punkt#AssociationDirected##besteht aus##0#0#-1
+V1=Dreieck#Funktion#AssociationDirected##wird erstellt aus##0#0#-1
+V2=DreieckZaehlerMain#DarstellungFrame#AssociationDirected##erstellt##0#0#-1
+V3=DarstellungFrame#DreieckZaehlerMain#AssociationDirected##ruft auf##0#0#-1
+V4=DarstellungFrame#Punkt#Aggregation####0#0#0
+V5=DarstellungFrame#Dreieck#Aggregation####0#0#0
+V6=DreieckZaehlerMain#Punkt#Aggregation####0#0#0
+V7=DreieckZaehlerMain#Funktion#Aggregation####0#0#0
+V8=DreieckZaehlerMain#Dreieck#Aggregation####0#0#0
+
+[Interactive]
+I0=
+
+[Window]
+Left=-8
+Top=-31
+Width=2576
+Height=1173
+

@@ -9,7 +9,7 @@ public class Punkt {
 
   @Override
   public String toString() {
-    return "Punkt@[x=" + x + ",y=" + y + "]";
+    return "" + x + ", " + y + " ";
   }
   
   public boolean equalsPunkt(Punkt p) {   

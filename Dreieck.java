@@ -11,7 +11,6 @@ public class Dreieck {
     if(p1.equalsPunkt(p2) || p2.equalsPunkt(p3) || p1.equalsPunkt(p3)) {
       aufeinemPunkt = true;
     }
-    
   }
 
   public Punkt getP1() {
@@ -32,7 +31,7 @@ public class Dreieck {
 
   @Override
   public String toString() {
-    return "Dreieck[" + this.p1 + "," + this.p2 + "," + this.p3 + "]";
+    return "" + this.p1  + this.p2 + this.p3;
   }
 
 }
